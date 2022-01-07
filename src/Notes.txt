@@ -1,0 +1,15 @@
+================================================
+    Step # 1 : Starting an Embedded Server
+================================================
+ - Adding an Embedded Tomcat Server dependency
+ - Creating a class to Lauch the server
+
+================================================
+    Step # 2 : Dependency Injection
+================================================
+ - Adding Spring-Context dependency to use Spring Dependecy Injection and Spring's IOC container and Application Context
+ - Creating a Bean out of Tomcat server launcher class and create a bean in the application using Spring ApplicationContext
+
+================================================
+    Step # 3 : Making Application more Configurable
+================================================

@@ -24,6 +24,8 @@
       <groupId>org.apache.tomcat.embed</groupId>
       <artifactId>tomcat-embed-core</artifactId>
       <version>8.5.37</version>
+      <!-- means during compile time you have this jar on the classpath but during runtime you won't have it on the classpath-->
+<!--      <scope>provided</scope>-->
     </dependency>
 
     <!-- dependecy so that you can use spring's dependency injection using Application Context -->

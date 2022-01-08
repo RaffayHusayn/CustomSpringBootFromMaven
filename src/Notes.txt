@@ -1,15 +1,28 @@
-================================================
+================================================================================================
     Step # 1 : Starting an Embedded Server
-================================================
+================================================================================================
  - Adding an Embedded Tomcat Server dependency
  - Creating a class to Lauch the server
 
-================================================
+================================================================================================
     Step # 2 : Dependency Injection
-================================================
+================================================================================================
  - Adding Spring-Context dependency to use Spring Dependecy Injection and Spring's IOC container and Application Context
  - Creating a Bean out of Tomcat server launcher class and create a bean in the application using Spring ApplicationContext
 
-================================================
+================================================================================================
     Step # 3 : Making Application more Configurable
-================================================
+================================================================================================
+  - Now first we want to make the application more configurable and not hardcode all the stuff like Bean creation for embedded tomcat server
+ because what if we don't want to use that and want to use a different server etc
+  - For that we first move the configuration to a differnt class "com.fclass.config.DefaultConfig" -> think of this class as the internal configuration class
+  provided by SpringBoot
+  - We then Create our own configuraiton class in the App.java where we import the DefaultConfig file to get all the configured beans
+
+     ------------------------------------------------------------------------------------
+     Sub Step 3 A : Only Creating Tomcat Laucher Bean if we have the .jar in the classpath
+     -------------------------------------------------------------------------------------
+      - We use the annotation @Conditional on the @Bean of the DefaultConfig class which creates the Tomcat Laucher bean
+      - We create a new class "com.fclass.conditionals.TomcatOnClassPathCondition" which try to load the tomcat class in the jvm using
+      Class.forName() -> if we are able to load it then we return true else we return false.
+      - We use this class in the Conditional so we only create the Tomcat Launcher bean if we have the .jar in the classpath

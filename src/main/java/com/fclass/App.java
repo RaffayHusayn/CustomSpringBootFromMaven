@@ -10,6 +10,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.SQLException;
+
 /**
  * Hello world!
  *
@@ -24,7 +28,13 @@ public class App
 
     public static void main( String[] args ) throws LifecycleException {
 
-        new AnnotationConfigApplicationContext(MyAppConfig.class);
+        ApplicationContext ctx = new AnnotationConfigApplicationContext(MyAppConfig.class);
+        DataSource datasource = ctx.getBean(DataSource.class);
+        try(Connection connection = datasource.getConnection()) {
+            System.out.println("Connection is valid(5000) : "+ connection.isValid(5000));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 //        TomcatLaucher tomcatLaucher = ctx.getBean(TomcatLaucher.class);
 //        tomcatLaucher.launch();
 

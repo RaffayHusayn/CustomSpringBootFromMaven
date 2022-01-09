@@ -1,6 +1,7 @@
 package com.fclass.config;
 
 import com.fclass.TomcatLaucher;
+import com.fclass.conditionals.DataSourcePropertiesSet;
 import com.fclass.conditionals.TomcatOnClassPathCondition;
 import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
@@ -31,7 +32,7 @@ public class DefaultConfig {
     // Bean to create a Datasource to connect to the inmmemory database if we have used
     // spring.datasource.url and spring.datasource.driver-class-name in the application.properties file
         @Bean
-//        @Conditional()
+        @Conditional(DataSourcePropertiesSet.class)
         public DataSource dataSource(Environment environment) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
             Driver driver = (Driver) Class.forName(environment.getProperty("spring.datasource.driver-class-name")).newInstance();
             String url = environment.getProperty("spring.datasource.url");

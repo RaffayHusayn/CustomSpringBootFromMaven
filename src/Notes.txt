@@ -26,3 +26,14 @@
       - We create a new class "com.fclass.conditionals.TomcatOnClassPathCondition" which try to load the tomcat class in the jvm using
       Class.forName() -> if we are able to load it then we return true else we return false.
       - We use this class in the Conditional so we only create the Tomcat Launcher bean if we have the .jar in the classpath
+      ------------------------------------------------------------------------------------
+      Sub Step 3 B : Only Creating DataSource Bean if we have certain properties variables set in the application.properties file
+      -------------------------------------------------------------------------------------
+      - We use the annotation @Conditional again on the @Bean of the method of the DefaultConfig class which create the
+      DataSoure Bean.
+      - We create a new Class "DataSourcePropertiesSet.java" which checks the applicaiton.properties file to see if it
+      contain the 2 properties required for creating the DataSource which can then be use to create a database connection
+      - If the 2 properties "spring.datasource.driver-class-name" and "spring.datasource.url" are present in the application.properties
+      then we will create return true in the matches() method of the DataSourcePropertiesSet class
+      -This returned true in the @Conditional() will sginal the spring framework to create the bean. If it returns false then it
+      will signal the Spring Framework to not create the Bean.

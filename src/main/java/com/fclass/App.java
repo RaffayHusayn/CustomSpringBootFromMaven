@@ -1,5 +1,6 @@
 package com.fclass;
 
+import com.fclass.annotations.CustomAnnotation;
 import com.fclass.config.DefaultConfig;
 import org.apache.catalina.Context;
 import org.apache.catalina.LifecycleException;
@@ -26,6 +27,7 @@ public class App
         //uses a lot of configuration from the Default Configuration class
     }
 
+    @CustomAnnotation// this annotation does nothing, I created it
     public static void main( String[] args ) throws LifecycleException {
 
         ApplicationContext ctx = new AnnotationConfigApplicationContext(MyAppConfig.class);
